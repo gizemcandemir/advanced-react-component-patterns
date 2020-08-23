@@ -24,7 +24,7 @@ const withClapAnimation = WrappedComponent => {
 }
 
 const MediumClap = ({animate}) => {
-  const MAX_USER_CLAP = 12;
+  const MAX_USER_CLAP = 50;
   const [clapState, setClapState] = useState(initialState);
   const { count, countTotal, isClicked } = clapState;
 

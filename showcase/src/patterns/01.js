@@ -27,6 +27,39 @@ const withClapAnimation = (WrappedComponent) => {
         easing: mojs.easing.ease.out
       })
 
+      const triangleBurst = new mojs.Burst ({
+        parent: '#clap',
+        radius: {50:95},
+        count: 5,
+        angle: 30,
+        children: {
+          shape: 'polygon',
+          radius: {6:0},
+          stroke: 'rgba(211,54,0,0.5)',
+          strokeWidth: 2,
+          angle: 210,
+          delay: 30,
+          speed: 0.2,
+          easing: mojs.easing.bezier(0.1, 1, 0.3, 1),
+          duration: tlDuration,
+        }
+      })
+
+      const circleBurst = new mojs.Burst ({
+        parent: '#clap',
+        radius: {50:75},
+        angle: 25,
+        duration: tlDuration,
+        children: {
+          shape: 'circle',
+          fill: 'rgba(149,165,166,0.5)',
+          delay: 30,
+          speed: 0.2,
+          radius: {3:0},
+          easing: mojs.easing.bezier(0.1, 1, 0.3, 1),
+        }
+      })
+
       const countAnimation = new mojs.Html ({
         el: '#clapCount',
         opacity: {0: 1},
@@ -49,7 +82,7 @@ const withClapAnimation = (WrappedComponent) => {
       const clap = document.getElementById('clap');
       clap.style.transform = 'scale(1,1)'
 
-      const newAnimationTimeline = this.animationTimeline.add([scaleButton, countTotalAnimation, countAnimation])
+      const newAnimationTimeline = this.animationTimeline.add([scaleButton, triangleBurst, circleBurst, countTotalAnimation, countAnimation])
       this.setState({animationTimeline: newAnimationTimeline})
     }
 
